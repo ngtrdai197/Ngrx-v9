@@ -10,15 +10,18 @@ export class BookService {
 
 	public loadBooks(): Observable<any> {
 		return this.http.get<any>(this.endPoint).pipe(
-			map((response) => {
-				return response.items.map((book) => {
+			map((response) =>
+				response.items.map((book: any) => {
+					const {
+						volumeInfo: { title, authors, description },
+					} = book
 					return {
-						title: book.volumeInfo.title,
-						authors: book.volumeInfo.authors,
-						description: book.volumeInfo.description,
+						title,
+						authors,
+						description,
 					}
 				})
-			})
+			)
 		)
 	}
 }
