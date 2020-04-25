@@ -3,29 +3,31 @@ import { NgModule } from '@angular/core'
 import { StoreModule } from '@ngrx/store'
 import { RouterModule } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
-import { HttpClientModule } from '@angular/common/http'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 
 import { AppComponent } from './app.component'
-import { BooksFeatureStoreModule } from './store/books/books-store.module'
-import { environment } from '../environments/environment'
+import { environment as env } from '@env/environment'
 import { appRoutes } from './app.routes'
+import { RootStoreModule } from '@store/root-store.module'
+import { SharedModule } from '@shared/shared.module'
+import { CoreModule } from '@core/core.module'
 
 @NgModule({
-	declarations: [AppComponent],
-	imports: [
-		BrowserModule,
-		HttpClientModule,
-		RouterModule.forRoot(appRoutes),
-		StoreModule.forRoot({}, {}),
-		BooksFeatureStoreModule,
-		StoreDevtoolsModule.instrument({
-			maxAge: 25,
-			logOnly: environment.production,
-		}),
-		EffectsModule.forRoot([]),
-	],
-	providers: [],
-	bootstrap: [AppComponent],
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(appRoutes),
+    SharedModule,
+    CoreModule,
+    StoreModule.forRoot({}, {}),
+    RootStoreModule,
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: env.production,
+    }),
+    EffectsModule.forRoot([]),
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
