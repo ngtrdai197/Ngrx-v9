@@ -1,12 +1,12 @@
 <p>books works!</p>
 <button (click)="addNewBook()">Add New Book</button>
 
-<ul *ngFor="let book of books$ | async; trackBy: trackByFn">
-	<li>{{ book?.title }}</li>
-	<li>
-		<p *ngFor="let author of book?.authors">{{ author }}</p>
-	</li>
-	<li>{{ book?.description }}</li>
+<ul *ngFor="let book of books$ | async; trackBy: trackByIndex">
+  <li>{{ book?.title }}</li>
+  <li>
+    <p *ngFor="let author of book?.authors">{{ author }}</p>
+  </li>
+  <li>{{ book?.description }}</li>
 </ul>
 
 <h4 *ngIf="loading?.books">Loading ...</h4>

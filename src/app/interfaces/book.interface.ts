@@ -1,5 +1,5 @@
-export interface Book {
-	title: string
-	description: string
-	authors: string[]
+export interface IBook {
+  title: string
+  description: string
+  authors: string[]
 }

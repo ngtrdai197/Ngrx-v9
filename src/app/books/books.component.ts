@@ -3,47 +3,37 @@ import { Store, select } from '@ngrx/store'
 import { takeUntil, finalize } from 'rxjs/operators'
 import { Subject, Observable } from 'rxjs'
 
-import * as bookActions from '@/store/books/books.action'
-import * as bookSelector from '@/store/books/books.selector'
-import { Book } from '@/interfaces/book.interface'
+import * as bookActions from '@store/books/books.action'
+import * as bookSelector from '@store/books/books.selector'
+import { IBook } from '@/interfaces/book.interface'
+import { BaseComponent } from '@shared/components/base/base.component'
 
 @Component({
-	selector: 'app-books',
-	templateUrl: './books.component.html',
-	styleUrls: ['./books.component.scss'],
+  selector: 'app-books',
+  templateUrl: './books.component.html',
+  styleUrls: ['./books.component.scss'],
 })
-export class BooksComponent implements OnInit, OnDestroy {
-	public loading: {
-		[key: string]: boolean
-	} = {}
-	private ngDestroyed$ = new Subject()
-	books$: Observable<Book[]>
+export class BooksComponent extends BaseComponent implements OnInit {
+  books$: Observable<IBook[]>
 
-	constructor(private readonly store: Store) {}
+  constructor(private readonly store: Store) {
+    super()
+  }
 
-	ngOnInit() {
-		this.store.dispatch(bookActions.getBooks())
-		this.books$ = this.store.pipe(
-			select(bookSelector.selectBooks),
-			takeUntil(this.ngDestroyed$)
-		)
-	}
+  ngOnInit() {
+    this.store.dispatch(bookActions.getBooks())
+    this.books$ = this.store.pipe(
+      select(bookSelector.selectBooks),
+      takeUntil(this.ngDestroyed$)
+    )
+  }
 
-	ngOnDestroy() {
-		this.ngDestroyed$.next()
-		this.ngDestroyed$.complete()
-	}
-
-	public addNewBook() {
-		const newBook: Book = {
-			title: 'Book 3',
-			authors: ['Nguyen Dai'],
-			description: 'Test description',
-		}
-		this.store.dispatch(bookActions.createBook({ book: newBook }))
-	}
-
-	public trackByFn(index, item) {
-		return index
-	}
+  public addNewBook() {
+    const newBook: IBook = {
+      title: 'Book 3',
+      authors: ['Nguyen Dai'],
+      description: 'Test description',
+    }
+    this.store.dispatch(bookActions.createBook({ book: newBook }))
+  }
 }

@@ -5,14 +5,14 @@ import { Routes, RouterModule } from '@angular/router'
 import { BooksComponent } from './books.component'
 
 const routes: Routes = [
-	{
-		path: '',
-		component: BooksComponent,
-	},
+  {
+    path: '',
+    component: BooksComponent,
+  },
 ]
 
 @NgModule({
-	declarations: [BooksComponent],
-	imports: [CommonModule, RouterModule.forChild(routes)],
+  declarations: [BooksComponent],
+  imports: [CommonModule, RouterModule.forChild(routes)],
 })
 export class BooksModule {}
