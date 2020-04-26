@@ -7,14 +7,16 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout'
 import { NzMenuModule } from 'ng-zorro-antd/menu'
 
 import { DefaultLayoutComponent, HeaderComponent } from './components'
+import { ToUppercasePipe } from './pipes/to-uppercase.pipe'
 
 const components = [DefaultLayoutComponent, HeaderComponent]
 
 @NgModule({
-  declarations: [...components],
+  declarations: [...components, ToUppercasePipe],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [
     DefaultLayoutComponent,
+    ToUppercasePipe,
     FormsModule,
     ReactiveFormsModule,
     IconsProviderModule,
