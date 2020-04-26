@@ -28,7 +28,12 @@ export class AuthEffects {
           catchError((error) =>
             of(
               authActions.onLoginsFailed({
-                authState: { user: null, token: null, loading: false, error },
+                authState: {
+                  user: null,
+                  token: null,
+                  loading: false,
+                  error: error.message,
+                },
               })
             )
           )
