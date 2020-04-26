@@ -3,6 +3,15 @@ import { DefaultLayoutComponent } from '@shared/components'
 
 export const appRoutes: Routes = [
   {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('@/dashboard/dashboard.module').then((m) => m.DashboardModule),
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('@/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
     path: '',
     component: DefaultLayoutComponent,
     children: [
@@ -29,9 +38,5 @@ export const appRoutes: Routes = [
         redirectTo: '',
       },
     ],
-  },
-  {
-    path: 'auth',
-    loadChildren: () => import('@/auth/auth.module').then((m) => m.AuthModule),
   },
 ]
