@@ -1,18 +1,1 @@
 <p>dash-board-books works!</p>
-<nz-empty></nz-empty>
-<nz-mention
-  [nzSuggestions]="webFrameworks"
-  [nzValueWith]="valueWith"
-  (nzOnSelect)="onSelect($event)"
-  [nzLoading]="mentionLoading"
->
-  <input
-    placeholder="@someone"
-    nz-input
-    nzMentionTrigger
-    [(ngModel)]="inputValue"
-  />
-  <ng-container *nzMentionSuggestion="let framework">
-    <span>{{ framework.name }} - {{ framework.type }}</span>
-  </ng-container>
-</nz-mention>
