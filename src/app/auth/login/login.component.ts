@@ -3,7 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms'
 import { Store } from '@ngrx/store'
 
 import { ILogin } from '@/interfaces'
-import * as authActions from '@store/auth/auth.action'
+import * as authActions from '@core/store/auth/auth.action'
 
 @Component({
   selector: 'app-login',

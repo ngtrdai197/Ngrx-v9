@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Store, select } from '@ngrx/store'
 import { takeUntil } from 'rxjs/operators'
 
-import * as authSelectors from '@store/auth/auth.selector'
+import * as authSelectors from '@core/store/auth/auth.selector'
 import { IUser } from '@/interfaces/user.interface'
 import { BaseComponent } from '@shared/components/base/base.component'
 

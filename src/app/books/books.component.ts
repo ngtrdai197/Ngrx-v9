@@ -3,8 +3,8 @@ import { Store, select } from '@ngrx/store'
 import { takeUntil, finalize } from 'rxjs/operators'
 import { Subject, Observable } from 'rxjs'
 
-import * as bookActions from '@store/books/books.action'
-import * as bookSelector from '@store/books/books.selector'
+import * as bookActions from '@core/store/books/books.action'
+import * as bookSelector from '@core/store/books/books.selector'
 import { IBook } from '@/interfaces/book.interface'
 import { BaseComponent } from '@shared/components/base/base.component'
 
