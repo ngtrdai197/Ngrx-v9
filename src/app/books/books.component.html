@@ -2,6 +2,7 @@
 <button (click)="addNewBook()">Add New Book</button>
 
 <ul *ngFor="let book of books$ | async; trackBy: trackByIndex">
+  <button (click)="updateBook(book?.id)">Update Book</button>
   <li>{{ book?.title }}</li>
   <li>
     <p *ngFor="let author of book?.authors">{{ author }}</p>

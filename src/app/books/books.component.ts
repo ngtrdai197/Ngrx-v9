@@ -23,13 +23,42 @@ export class BooksComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(bookActions.getBooks())
     this.books$ = this.store.pipe(
-      select(bookSelector.selectBooks),
+      select(bookSelector.selectAllBooks),
       takeUntil(this.ngDestroyed$)
+    )
+    this.store
+      .pipe(select(bookSelector.selectUserTotal), takeUntil(this.ngDestroyed$))
+      .subscribe((total) => {
+        console.log('total', total)
+      })
+
+    this.store
+      .pipe(select(bookSelector.selectBook), takeUntil(this.ngDestroyed$))
+      .subscribe((book) => {
+        console.log('book', book)
+      })
+  }
+
+  public updateBook(id: string) {
+    this.store.dispatch(
+      bookActions.updateBook({
+        book: {
+          id,
+          changes: {
+            title: 'Book Update',
+            authors: ['Nguyen Tr Dai'],
+            description: 'Update description',
+          },
+        },
+      })
     )
   }
 
   public addNewBook() {
     const newBook: IBook = {
+      id:
+        Math.random().toString(36).substring(2, 15) +
+        Math.random().toString(36).substring(2, 15),
       title: 'Book 3',
       authors: ['Nguyen Dai'],
       description: 'Test description',

@@ -14,8 +14,10 @@ export class BookService {
         response.items.map((book: any) => {
           const {
             volumeInfo: { title, authors, description },
+            id,
           } = book
           return {
+            id,
             title,
             authors,
             description,

@@ -17,7 +17,6 @@ export class BookEffects {
             return bookActions.getBooksSuccess({
               books,
               loading: false,
-              error: null,
             })
           }),
           catchError((error) =>
